@@ -50,7 +50,6 @@ FocusScope {
                 0,      0,                  0,      1
             )
         }
-
     }
 
     Item {
@@ -117,7 +116,7 @@ FocusScope {
             preferredHighlightBegin: 0.32
             preferredHighlightEnd: preferredHighlightBegin
 
-            Keys.onPressed: {
+            Keys.onReleased: {
 
                 if (event.isAutoRepeat) {
                     return
@@ -173,9 +172,7 @@ FocusScope {
                         api.memory.set("currentCollectionIndex", currentCollectionIndex)
                 }
             }
-
         }
-
     }
 
     PathView {
@@ -215,7 +212,6 @@ FocusScope {
 
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
-
     }
 
     Text {
@@ -247,7 +243,7 @@ FocusScope {
             text_color: "#8E63EC"
             front_color: "#338E63EC"
             back_color: "#338E63EC"
-            input_button: "BTN-D"
+            input_button: "D"
         }
 
         Controls {
@@ -258,12 +254,7 @@ FocusScope {
             text_color: "#E06C9A"
             front_color: "#26E06C9A"
             back_color: "#26E06C9A"
-            input_button: "BTN-R"
+            input_button: "R"
         }
-
-        
-
-        
     }
-
 }

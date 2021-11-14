@@ -358,7 +358,7 @@ FocusScope {
         focus: true
     }
 
-    Keys.onPressed: {
+    Keys.onReleased: {
         if (api.keys.isPrevPage(event)) {
 
             //PrevPage sound

@@ -29,6 +29,22 @@ Item {
                 asynchronous: true
                 source: "../assets/background/"+shortname+".jpg"
                 fillMode: Image.PreserveAspectCrop
+
+                Image {
+                    id: img_collection_logo
+                    asynchronous: true
+                    source: "../assets/logos/color/"+shortname+".png"
+                    anchors{
+                        fill: parent
+                        leftMargin: parent.width * 0.05
+                        topMargin: parent.height * 0.05
+                        rightMargin: parent.width * 0.05
+                        bottomMargin: parent.height * 0.05
+                    }
+                    horizontalAlignment: Image.AlignHCenter
+                    verticalAlignment: Image.AlignTop
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Desaturate {

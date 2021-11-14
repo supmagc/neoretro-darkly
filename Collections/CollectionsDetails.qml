@@ -32,7 +32,7 @@ Item {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/logos/"+shortname+".svg"
+                    source: "../assets/logos/mono/"+shortname+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                 }
