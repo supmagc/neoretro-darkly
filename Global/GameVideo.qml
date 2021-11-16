@@ -22,85 +22,52 @@ Item {
 id: root
 
     property var game
-    property bool selected
+    property bool playing
 
     onGameChanged: {
         videoPreviewLoader.sourceComponent = undefined;
-            videoDelay.restart();
+        videoDelay.restart();
     }
 
-    onSelectedChanged: {
-        if (!selected) {
-            videoPreviewLoader.sourceComponent = undefined;
-            videoDelay.stop();
-        }
+    onPlayingChanged: {
+        videoPreviewLoader.sourceComponent = undefined;
+        videoDelay.restart();
     }
 
     // Timer to show the video
     Timer {
-    id: videoDelay
+        id: videoDelay
 
         interval: 600
         onTriggered: {
-            if (game && game.assets.videos.length) {
+            if (playing && game && game.assets.videos.length) {
                 videoPreviewLoader.sourceComponent = videoPreviewWrapper;
             }
         }
     }
 
-    Timer {
-    id: stopvideo
-
-        interval: 1000
-        onTriggered: {
-            videoPreviewLoader.sourceComponent = undefined;
-            videoDelay.stop();
-        }
-    }
-
-    // NOTE: Video Preview
     Component {
-    id: videoPreviewWrapper
+        id: videoPreviewWrapper
 
         Video {
-        id: videocomponent
+            id: videocomponent
 
             anchors.fill: parent
             source: game.assets.videoList.length ? game.assets.videoList[0] : ""
             fillMode: VideoOutput.PreserveAspectCrop
-            muted: false
+            muted: true
             loops: MediaPlayer.Infinite
             autoPlay: true
-
-            //onPlaying: videocomponent.seek(5000)
         }
-
-    }
-
-    DropShadow {
-    id: outershadow
-
-        anchors.fill: videocontainer
-        horizontalOffset: 0
-        verticalOffset: 0
-        radius: 20.0
-        samples: 15
-        color: "#000000"
-        source: videocontainer
-        opacity: selected ? 0.5 : 0
-        Behavior on opacity { NumberAnimation { duration: 100 } }
-        z: -5
     }
 
     Item {
-    id: videocontainer
+        id: videocontainer
 
         anchors.fill: parent
 
-        // Video
         Loader {
-        id: videoPreviewLoader
-
+            id: videoPreviewLoader
             asynchronous: true
             anchors { fill: parent }
         }

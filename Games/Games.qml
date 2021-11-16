@@ -7,20 +7,6 @@ import "../Global"
 
 FocusScope {
 
-    BackgroundImage {
-        id: backgroundimage
-        game: currentGame
-        anchors {
-            left: parent.left; right: parent.right
-            top: parent.top; bottom: parent.bottom
-        }
-        opacity: 0.255
-    }
-
-    focus: games.focus
-
-    state: "all"
-
     property int currentGameIndex: 0
     property var currentGame: {
         if (gv_games.count === 0)
@@ -30,6 +16,9 @@ FocusScope {
 
         return currentCollection.games.get(currentGameIndex)
     }
+
+    focus: games.focus
+    state: "all"
 
     SortFilterProxyModel {
         id: filteredGames
@@ -47,6 +36,17 @@ FocusScope {
                 duration: 250
             }
         }
+    }
+
+    // Background image
+    BackgroundImage {
+        id: backgroundimage
+        game: currentGame
+        anchors {
+            left: parent.left; right: parent.right
+            top: parent.top; bottom: parent.bottom
+        }
+        opacity: 0.255
     }
 
     // Skewed background
@@ -76,6 +76,7 @@ FocusScope {
         }
     }
 
+    // Content
     Item {
         width: parent.width * 0.9
         anchors {
@@ -381,6 +382,7 @@ FocusScope {
                                     width: img_game_screenshot.paintedWidth
                                     height: img_game_screenshot.paintedHeight
                                     anchors.centerIn: img_game_screenshot
+                                    playing: true
                                 }                          
                             }
                         }
@@ -400,6 +402,7 @@ FocusScope {
             visible: currentGame !== null
         }
 
+        // No favorite found
         Item {
             anchors.centerIn: parent
             visible: currentGame === null && (games.state === "favorites")
@@ -584,7 +587,7 @@ FocusScope {
                 }
             }
             
-            //Navgation bar
+            //Navigation bar
             Component {
                 id: cpnt_helper_nav
                 Item {

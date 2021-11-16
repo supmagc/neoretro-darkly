@@ -400,6 +400,4 @@ FocusScope {
         source: "assets/sounds/accept.wav"
         volume: 1.0
     }
-
-
 }
